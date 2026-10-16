@@ -14,19 +14,19 @@
 		9EFC662127022B513D55DE98 /* Core/Usage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1628F20B569850DB1244FC /* Core/Usage.swift */; };
 		B6D9D5358FD1D09AA00C3D20 /* App/ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E17EDAE9198B866B5A3A21 /* App/ConnectionView.swift */; };
 		C6EE34CFD1A4C2C9FF5D7EC7 /* App/ReadUsage.js in Resources */ = {isa = PBXBuildFile; fileRef = 93F8BB0EB2C659B85694486C /* App/ReadUsage.js */; };
-		FF0B915847B6F5A8941A8C01 /* App/HeadroomApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36F53EB5B7390E1AF552A34 /* App/HeadroomApp.swift */; };
+		FF0B915847B6F5A8941A8C01 /* App/UsageCheckApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36F53EB5B7390E1AF552A34 /* App/UsageCheckApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		71448F02DCBD4D3C948159AC /* Signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Signing.xcconfig; sourceTree = "<group>"; };
 		9B6810FEF65A85474AEECD5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = App/Assets.xcassets; sourceTree = "<group>"; };
 		21E17EDAE9198B866B5A3A21 /* App/ConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/ConnectionView.swift; sourceTree = "<group>"; };
-		38A007151ABE87CC01A5B6E9 /* Headroom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Headroom.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		38A007151ABE87CC01A5B6E9 /* UsageCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UsageCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B1628F20B569850DB1244FC /* Core/Usage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Usage.swift; sourceTree = "<group>"; };
 		63DCCAA14F10C5B9C24F4C56 /* App/ProviderCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/ProviderCard.swift; sourceTree = "<group>"; };
 		6D15C7CA423DE64384AAE98E /* App/DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/DashboardView.swift; sourceTree = "<group>"; };
 		93F8BB0EB2C659B85694486C /* App/ReadUsage.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = App/ReadUsage.js; sourceTree = "<group>"; };
-		A36F53EB5B7390E1AF552A34 /* App/HeadroomApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/HeadroomApp.swift; sourceTree = "<group>"; };
+		A36F53EB5B7390E1AF552A34 /* App/UsageCheckApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/UsageCheckApp.swift; sourceTree = "<group>"; };
 		F78A71AF8BBF8CC2F6F31354 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FE96D288C8A97D8B2A691F8A /* App/ProviderSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/ProviderSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -47,7 +47,7 @@
 			children = (
 				21E17EDAE9198B866B5A3A21 /* App/ConnectionView.swift */,
 				6D15C7CA423DE64384AAE98E /* App/DashboardView.swift */,
-				A36F53EB5B7390E1AF552A34 /* App/HeadroomApp.swift */,
+				A36F53EB5B7390E1AF552A34 /* App/UsageCheckApp.swift */,
 				63DCCAA14F10C5B9C24F4C56 /* App/ProviderCard.swift */,
 				FE96D288C8A97D8B2A691F8A /* App/ProviderSession.swift */,
 				3B1628F20B569850DB1244FC /* Core/Usage.swift */,
@@ -62,7 +62,7 @@
 		FBDC4F23F93125BBEEAE800C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				38A007151ABE87CC01A5B6E9 /* Headroom.app */,
+				38A007151ABE87CC01A5B6E9 /* UsageCheck.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,9 +70,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0E8A3AD980EC179856012B7E /* Headroom */ = {
+		0E8A3AD980EC179856012B7E /* UsageCheck */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C57128001CE614BF8549D6BB /* Build configuration list for PBXNativeTarget "Headroom" */;
+			buildConfigurationList = C57128001CE614BF8549D6BB /* Build configuration list for PBXNativeTarget "UsageCheck" */;
 			buildPhases = (
 				BCE16DD0260827ECF338C787 /* Sources */,
 				7561BFB015D8F536760CB671 /* Frameworks */,
@@ -82,9 +82,9 @@
 			);
 			dependencies = (
 			);
-			name = Headroom;
-			productName = Headroom;
-			productReference = 38A007151ABE87CC01A5B6E9 /* Headroom.app */;
+			name = UsageCheck;
+			productName = UsageCheck;
+			productReference = 38A007151ABE87CC01A5B6E9 /* UsageCheck.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -101,7 +101,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 862894B703A6DEDF96A9DD6C /* Build configuration list for PBXProject "Headroom" */;
+			buildConfigurationList = 862894B703A6DEDF96A9DD6C /* Build configuration list for PBXProject "UsageCheck" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -114,7 +114,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0E8A3AD980EC179856012B7E /* Headroom */,
+				0E8A3AD980EC179856012B7E /* UsageCheck */,
 			);
 		};
 /* End PBXProject section */
@@ -138,7 +138,7 @@
 			files = (
 				B6D9D5358FD1D09AA00C3D20 /* App/ConnectionView.swift in Sources */,
 				6C711294A73AE430521E304E /* App/DashboardView.swift in Sources */,
-				FF0B915847B6F5A8941A8C01 /* App/HeadroomApp.swift in Sources */,
+				FF0B915847B6F5A8941A8C01 /* App/UsageCheckApp.swift in Sources */,
 				479C13FA0D2178AEDFCDC01C /* App/ProviderCard.swift in Sources */,
 				026677B83D26EE6CF25F10DE /* App/ProviderSession.swift in Sources */,
 				9EFC662127022B513D55DE98 /* Core/Usage.swift in Sources */,
@@ -287,7 +287,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		862894B703A6DEDF96A9DD6C /* Build configuration list for PBXProject "Headroom" */ = {
+		862894B703A6DEDF96A9DD6C /* Build configuration list for PBXProject "UsageCheck" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				89E1FD6268CC0F221A2BE178 /* Debug */,
@@ -296,7 +296,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C57128001CE614BF8549D6BB /* Build configuration list for PBXNativeTarget "Headroom" */ = {
+		C57128001CE614BF8549D6BB /* Build configuration list for PBXNativeTarget "UsageCheck" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7082CC0B6FC1282FCEABD07A /* Debug */,

@@ -25,8 +25,8 @@ The project currently targets iPhone. Native iPad support has not been validated
 
 ## Build and install
 
-1. Download or clone this repository and open `Headroom.xcodeproj` in Xcode.
-2. Select the **Headroom** scheme. The installed app is named **Usage Check**.
+1. Download or clone this repository and open `UsageCheck.xcodeproj` in Xcode.
+2. Select the **UsageCheck** scheme. The installed app is named **Usage Check**.
 3. Copy `LocalSigning.xcconfig.example` to `LocalSigning.xcconfig` in the project folder. Replace the placeholders with your Apple development team ID and a unique bundle identifier, such as `com.yourname.usagecheck`. The local file is ignored by Git. You can find your team ID in Xcode's account settings or your Apple developer account.
 4. Select your connected iPhone as the run destination. Enable Developer Mode and trust your developer profile if prompted, then click Run. A simulator can be used for initial testing without device signing.
 5. Connect Codex or Claude and sign in on the provider's website inside the app. Tap **Read usage**. If Claude offers multiple workspaces, select the workspace to track.
@@ -56,7 +56,7 @@ Run the local checks with Xcode selected:
 ```sh
 swift test
 node Tests/reader-tests.mjs
-xcodebuild -project Headroom.xcodeproj -scheme Headroom \
+xcodebuild -project UsageCheck.xcodeproj -scheme UsageCheck \
   -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build
 ```
 

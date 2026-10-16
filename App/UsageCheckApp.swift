@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct HeadroomApp: App {
+struct UsageCheckApp: App {
     var body: some Scene {
         WindowGroup { DashboardView() }
     }

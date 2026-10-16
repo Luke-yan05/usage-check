@@ -2,11 +2,11 @@
 import PackageDescription
 
 let package = Package(
-    name: "HeadroomCore",
+    name: "UsageCheckCore",
     platforms: [.macOS(.v14), .iOS(.v17)],
-    products: [.library(name: "HeadroomCore", targets: ["HeadroomCore"])],
+    products: [.library(name: "UsageCheckCore", targets: ["UsageCheckCore"])],
     targets: [
-        .target(name: "HeadroomCore", path: "Core"),
-        .testTarget(name: "HeadroomCoreTests", dependencies: ["HeadroomCore"], path: "Tests/HeadroomCoreTests")
+        .target(name: "UsageCheckCore", path: "Core"),
+        .testTarget(name: "UsageCheckCoreTests", dependencies: ["UsageCheckCore"], path: "Tests/UsageCheckCoreTests")
     ]
 )

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0E8A3AD980EC179856012B7E"
-               BuildableName = "Headroom.app"
-               BlueprintName = "Headroom"
-               ReferencedContainer = "container:Headroom.xcodeproj">
+               BuildableName = "UsageCheck.app"
+               BlueprintName = "UsageCheck"
+               ReferencedContainer = "container:UsageCheck.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -44,9 +44,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0E8A3AD980EC179856012B7E"
-            BuildableName = "Headroom.app"
-            BlueprintName = "Headroom"
-            ReferencedContainer = "container:Headroom.xcodeproj">
+            BuildableName = "UsageCheck.app"
+            BlueprintName = "UsageCheck"
+            ReferencedContainer = "container:UsageCheck.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -61,9 +61,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0E8A3AD980EC179856012B7E"
-            BuildableName = "Headroom.app"
-            BlueprintName = "Headroom"
-            ReferencedContainer = "container:Headroom.xcodeproj">
+            BuildableName = "UsageCheck.app"
+            BlueprintName = "UsageCheck"
+            ReferencedContainer = "container:UsageCheck.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
