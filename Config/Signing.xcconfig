@@ -1,0 +1,5 @@
+// Shared defaults. Personal settings belong in the ignored local override.
+PRODUCT_BUNDLE_IDENTIFIER = com.example.usagecheck
+DEVELOPMENT_TEAM =
+
+#include? "../LocalSigning.xcconfig"

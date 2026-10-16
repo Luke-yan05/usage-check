@@ -4,3 +4,10 @@ DerivedData/
 xcuserdata/
 *.xcuserstate
 .DS_Store
+
+# Personal signing and credentials
+LocalSigning.xcconfig
+*.p12
+*.mobileprovision
+.env
+.env.*

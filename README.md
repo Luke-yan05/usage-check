@@ -1,79 +1,67 @@
 # Usage Check
 
-Originally called Headroom, this app now appears as **Usage Check** on the iPhone and on its dashboard. The existing Xcode project remains `Headroom.xcodeproj`; its app identity and signing settings are preserved so updating the app retains your data.
+A native iPhone app that displays the remaining **Codex** and **Claude** subscription allowance in one place. It runs on your phone without a Mac companion or an app-owned server.
 
-A small, native iPhone prototype for seeing the remaining **Codex** and **Claude** subscription allowance in one place. It runs on the iPhone alone; no Mac companion or hosted service is required by the design.
+Codex figures cover coding usage associated with a ChatGPT subscription. They do not represent all conversational ChatGPT limits.
 
-**Status: simulator tested with both accounts.** On October 16, 2026, Headroom built successfully with Xcode 27.1 for the iPhone simulator and as an unsigned release for iPhone hardware. All seven XCTest cases and all fifteen mocked JavaScript reader checks passed. Live Codex and Claude reads both succeeded and were compared with the providers' usage pages. Saved sessions survived app restarts and app updates, and automatic foreground refresh worked. Dark mode and accessibility text sizes were reviewed; two issues found in testing were fixed and verified. See `TEST-RESULTS.md`. Code signing and physical-device validation remain to be done; no app has been installed on a physical iPhone.
+## Features
 
-## Run on your iPhone
+- Separate provider cards with subscription plan labels when available.
+- Remaining percentages, usage windows, and reset times reported by each provider.
+- Additional model-specific limits when available.
+- Refresh on opening the app and pull to refresh.
+- A local cache showing when each reading was fetched.
+- Support for light and dark appearance and larger text sizes.
+- Independent connections and a disconnect action for each provider.
 
-1. Install the full Xcode app from Apple, open it once, and install iOS platform support.
-2. Open `Headroom.xcodeproj` in Xcode. Select the **Headroom** scheme.
-3. In **Signing & Capabilities**, choose your development team and replace `com.example.Headroom` with a unique bundle identifier.
-4. Select an iPhone running iOS 17 or newer, enable Developer Mode if prompted, and run the app. A simulator can be used for initial layout checks.
-5. Tap **Connect Codex**, sign in directly on the ChatGPT website, navigate to the Codex usage page, then tap **Read usage**.
-6. Repeat for Claude. If more than one Claude workspace appears, explicitly select the one to track and read again.
+## Requirements
 
-Connecting to a provider is optional; the other card works independently. No API billing key is needed for this website-session approach.
+- An iPhone running iOS 17 or later.
+- A Mac with Xcode and iOS platform support to build and install the app.
+- An Apple Account for device signing.
+- A relevant Codex or Claude subscription and internet access for fresh readings.
 
-## What it does
+The project currently targets iPhone. Native iPad support has not been validated.
 
-- Separate Codex and Claude cards, with plan names read from provider metadata and a remaining percentage for each reported quota window.
-- Session and weekly windows, plus model-specific windows when reported.
-- Actual provider reset dates and relative time until reset.
-- A local cache with the time the reading was fetched.
-- Refresh when the app becomes active and by pulling down; no continuous background polling.
-- A minimum 30-second interval between attempts, and a cooldown for HTTP 429 responses.
-- Explicit errors for missing data, sign-in requirements, blocked access, and network problems.
-- A disconnect action that clears the selected provider's website data and cached reading from this app.
-- Native layout that follows the system's light/dark appearance and text size.
+## Build and install
 
-Codex is specifically the coding allowance associated with your ChatGPT subscription. The app does not treat it as a measure of every model's conversational ChatGPT allowance.
+1. Download or clone this repository and open `Headroom.xcodeproj` in Xcode.
+2. Select the **Headroom** scheme. The installed app is named **Usage Check**.
+3. Copy `LocalSigning.xcconfig.example` to `LocalSigning.xcconfig` in the project folder. Replace the placeholders with your Apple development team ID and a unique bundle identifier, such as `com.yourname.usagecheck`. The local file is ignored by Git. You can find your team ID in Xcode's account settings or your Apple developer account.
+4. Select your connected iPhone as the run destination. Enable Developer Mode and trust your developer profile if prompted, then click Run. A simulator can be used for initial testing without device signing.
+5. Connect Codex or Claude and sign in on the provider's website inside the app. Tap **Read usage**. If Claude offers multiple workspaces, select the workspace to track.
 
-## How the connection works
+Each person uses their own Apple Account for signing and their own provider accounts. Once installed, the app works without being connected to the Mac. Free Apple Personal Team installations require rebuilding and reinstalling after the provisioning profile expires, normally after seven days.
 
-Each provider has a persistent, separate WebKit website data store. The user signs in on the provider's own HTTPS website. The app executes a short, read-only script in an isolated WebKit content world, restricted to that provider's exact origin.
+## Privacy and connections
 
-The reader uses the website session to request usage. For Codex, it first attempts a cookie-authenticated usage request. If that returns 401, it obtains the website session's short-lived access token and retries within WebKit. Passwords, cookies, and that access token are never returned to Swift, printed, or copied into the app's preferences. Only selected usage fields, a plan label, and Claude workspace identifiers/names cross the bridge. Usage readings and the selected Claude workspace are stored in the app's local preferences; provider login sessions stay in WebKit's storage. The app includes no analytics service or app-owned server.
+Each provider has a separate persistent WebKit website data store. Sign-in happens on the provider's own HTTPS website. The app requests usage through that website session; no API billing key is required.
 
-This uses **website interfaces, not a documented public iPhone subscription-usage API**. The provider can change those interfaces or block embedded browsers. Some Google/Apple/SSO sign-in flows and bot-verification pages may not work in WebKit. Those cases require testing with your accounts; the prototype does not bypass verification or promise that every login method works. If a provider blocks embedded access, an alternative supported authentication method will be needed before the app can be considered functional for that account.
+Passwords, cookies, and access tokens are not returned to the native usage reader, logged by it, or saved in the app's preferences. The app stores selected usage readings and the chosen Claude workspace locally. Login sessions remain in WebKit storage. Disconnect clears the selected provider's website data and cached reading from this app.
 
-Numbers older than 15 minutes or followed by a failed check are labeled as a last reading. After a window's reset time passes, its percentage becomes unknown until a successful new reading; the app never assumes it has returned to 100%.
+The app includes no analytics service or app-owned server. Do not commit credentials, personal signing files, or account screenshots to the repository.
 
-## Validate
+## Limitations
 
-With full Xcode selected:
+Usage is read through provider website interfaces rather than a documented public subscription-usage API. Website changes, embedded-browser restrictions, and some sign-in methods can prevent reading. Verify important readings on the provider's official usage page.
+
+There is no continuous background polling. Readings older than 15 minutes or followed by a failed refresh are marked as a last reading. After a reset time passes, the percentage remains unknown until a successful refresh. Requests have a minimum 30-second interval, with additional cooldown after rate limiting.
+
+This is an independent project and is not affiliated with OpenAI or Anthropic.
+
+## Development
+
+Run the local checks with Xcode selected:
 
 ```sh
 swift test
+node Tests/reader-tests.mjs
 xcodebuild -project Headroom.xcodeproj -scheme Headroom \
   -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build
-node Tests/reader-tests.mjs
 ```
 
-The XCTest file has seven cases for calculations, malformed/missing data, timestamps, additional quotas, and cache round-tripping. All seven now pass using the actual XCTest framework in Xcode 27.1. The fifteen JavaScript checks run without provider credentials and cover successful reads, the token retry, origin restrictions, workspace selection, field filtering, rate limits, and access blocks. The mocked checks alone do not establish live service compatibility; a separate live Codex request succeeded in the iOS simulator.
+See [Testing](TEST-RESULTS.md) for coverage and remaining integration checks.
 
-Before relying on it on a physical iPhone, choose your signing team and validate the same sign-in and usage flows on that device. Workspace switching (if applicable) and clearing a real session with Disconnect remain additional integration checks. Never put real credentials in fixtures or screenshots.
+## Acknowledgments
 
-## Sources and installed skills
-
-Website request shapes were inspected in the original [CodexBar source](https://github.com/steipete/CodexBar), commit `a91669f2ff972ac2a549ed8c20725fdc1a510194`, specifically its Codex usage fetcher, OpenAI website session reader, and Claude website usage fetcher. Headroom uses a small independent implementation, with no CodexBar dependency.
-
-Official context: [Codex account rate limits](https://learn.chatgpt.com/docs/app-server) and [Claude usage windows](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work). The documented Codex desktop app-server and Claude Code status-line integrations are different from the website interfaces used by this iPhone prototype.
-
-Five skills from [Dimillian/Skills](https://github.com/Dimillian/Skills) were installed in your personal Codex skills folder and become available on your next turn:
-
-- `swiftui-ui-patterns`
-- `swiftui-view-refactor`
-- `swift-concurrency-expert`
-- `swiftui-liquid-glass`
-- `swiftui-performance-audit`
-
-The UI uses the patterns and view-composition guidance. Liquid Glass and performance-audit skills are available for later work; the app relies on standard SwiftUI controls and supports iOS 17+.
-
-Claude plan labels are read from `/api/account` and matched to the selected workspace. Plan metadata is optional: unavailable or unrecognized metadata leaves a generic label while usage continues to work. The live simulator check confirmed **Pro** for the signed-in Claude account.
-
-## App icon
-
-The teal and terracotta gauge icon is included in `App/Assets.xcassets/AppIcon.appiconset` and selected for both Debug and Release builds. The source is an opaque 1024 × 1024 RGB PNG; the simulator and iPhone Release builds both compile it successfully. To update the icon on an already installed iPhone copy, select your phone and Run the project again. Generation details and the exact ImageGen prompt are in `ICON-DESIGN.md`.
+The [CodexBar project](https://github.com/steipete/CodexBar) was a reference for provider website request formats. Usage Check uses an independent implementation and has no CodexBar dependency.
